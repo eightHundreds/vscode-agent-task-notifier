@@ -1,4 +1,4 @@
-![Agent Task Notifier banner](images/banner.png)
+![Agent Task Notifier icon](images/icon.png)
 
 # Agent Task Notifier
 
