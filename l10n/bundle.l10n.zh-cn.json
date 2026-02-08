@@ -1,0 +1,23 @@
+{
+  "Agent Task Notifier": "Agent 任务通知器",
+  "Agent Task Notifier enabled": "Agent 任务通知器已启用",
+  "Agent Task Notifier disabled": "Agent 任务通知器已禁用",
+  "Open a terminal before sending a test notification.": "发送测试通知前请先打开一个终端。",
+  "Test notification from Agent Task Notifier": "来自 Agent 任务通知器的测试通知",
+  "Focus Terminal": "聚焦终端",
+  "Codex Turn Complete": "Codex 任务已完成",
+  "Codex Approval Requested": "Codex 请求审批",
+  "Claude Subagent Complete": "Claude 子代理任务已完成",
+  "Claude Turn Complete": "Claude 任务已完成",
+  "Agent Event": "Agent 事件",
+  "Codex notify configuration was auto-updated. Restart the current codex process to apply changes.": "Codex notify 配置已自动更新。请重启当前 codex 进程以生效。",
+  "Failed to auto-configure Codex notify. See Agent Task Notifier logs for details.": "自动配置 Codex notify 失败。请查看 Agent 任务通知器日志。",
+  "Codex notify configuration repaired. Restart the current codex process.": "Codex notify 配置已修复。请重启当前 codex 进程。",
+  "Codex notify configuration is already up to date.": "Codex notify 配置已是最新，无需修改。",
+  "Failed to repair Codex notify configuration. See logs for details.": "修复 Codex notify 配置失败。请查看日志。",
+  "Claude hooks configuration was auto-updated. Restart the current claude process to apply changes.": "Claude hooks 配置已自动更新。请重启当前 claude 进程以生效。",
+  "Failed to auto-configure Claude hooks. See Agent Task Notifier logs for details.": "自动配置 Claude hooks 失败。请查看 Agent 任务通知器日志。",
+  "Claude hooks configuration repaired. Restart the current claude process.": "Claude hooks 配置已修复。请重启当前 claude 进程。",
+  "Claude hooks configuration is already up to date.": "Claude hooks 配置已是最新，无需修改。",
+  "Failed to repair Claude hooks configuration. See logs for details.": "修复 Claude hooks 配置失败。请查看日志。"
+}

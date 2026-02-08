@@ -1,0 +1,125 @@
+{
+    "name": "vscode-agent-task-notifier",
+    "displayName": "%extension.displayName%",
+    "description": "%extension.description%",
+    "icon": "images/icon.png",
+    "publisher": "wenbopan",
+    "version": "0.1.4",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wbopan/vscode-terminal-osc-notifier.git"
+    },
+    "engines": {
+        "vscode": "^1.93.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./dist/extension.js",
+    "l10n": "./l10n",
+    "extensionKind": [
+        "ui"
+    ],
+    "activationEvents": [
+        "onStartupFinished",
+        "onUri"
+    ],
+    "keywords": [
+        "terminal",
+        "agent",
+        "codex",
+        "claude",
+        "notification",
+        "cursor"
+    ],
+    "contributes": {
+        "configuration": {
+            "title": "%config.title%",
+            "properties": {
+                "agentTaskNotifier.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%config.enabled.description%"
+                },
+                "agentTaskNotifier.osNotification": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%config.osNotification.description%"
+                },
+                "agentTaskNotifier.vscodeToast": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%config.vscodeToast.description%"
+                },
+                "agentTaskNotifier.dedupeWindowMs": {
+                    "type": "number",
+                    "default": 3000,
+                    "minimum": 0,
+                    "description": "%config.dedupeWindowMs.description%"
+                },
+                "agentTaskNotifier.strictWindowRouting": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "%config.strictWindowRouting.description%"
+                },
+                "agentTaskNotifier.logLevel": {
+                    "type": "string",
+                    "enum": [
+                        "error",
+                        "warn",
+                        "info",
+                        "debug"
+                    ],
+                    "default": "info",
+                    "description": "%config.logLevel.description%"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "agentTaskNotifier.enable",
+                "title": "%command.enable.title%"
+            },
+            {
+                "command": "agentTaskNotifier.disable",
+                "title": "%command.disable.title%"
+            },
+            {
+                "command": "agentTaskNotifier.testNotification",
+                "title": "%command.testNotification.title%"
+            },
+            {
+                "command": "agentTaskNotifier.showLogs",
+                "title": "%command.showLogs.title%"
+            },
+            {
+                "command": "agentTaskNotifier.debugStatus",
+                "title": "%command.debugStatus.title%"
+            },
+            {
+                "command": "agentTaskNotifier.repairCodexNotify",
+                "title": "%command.repairCodexNotify.title%"
+            },
+            {
+                "command": "agentTaskNotifier.repairClaudeHooks",
+                "title": "%command.repairClaudeHooks.title%"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run typecheck && npm run build",
+        "build": "esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node18 --external:vscode --outdir=dist && node scripts/copy-notifier-assets.js",
+        "typecheck": "tsc --noEmit",
+        "watch": "node scripts/copy-notifier-assets.js && esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node18 --external:vscode --outdir=dist --watch"
+    },
+    "dependencies": {
+        "node-notifier": "^10.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.19",
+        "@types/vscode": "^1.93.0",
+        "esbuild": "^0.23.1",
+        "typescript": "^5.6.3"
+    }
+}

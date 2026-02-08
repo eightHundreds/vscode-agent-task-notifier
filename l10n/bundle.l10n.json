@@ -1,0 +1,23 @@
+{
+  "Agent Task Notifier": "Agent Task Notifier",
+  "Agent Task Notifier enabled": "Agent Task Notifier enabled",
+  "Agent Task Notifier disabled": "Agent Task Notifier disabled",
+  "Open a terminal before sending a test notification.": "Open a terminal before sending a test notification.",
+  "Test notification from Agent Task Notifier": "Test notification from Agent Task Notifier",
+  "Focus Terminal": "Focus Terminal",
+  "Codex Turn Complete": "Codex Turn Complete",
+  "Codex Approval Requested": "Codex Approval Requested",
+  "Claude Subagent Complete": "Claude Subagent Complete",
+  "Claude Turn Complete": "Claude Turn Complete",
+  "Agent Event": "Agent Event",
+  "Codex notify configuration was auto-updated. Restart the current codex process to apply changes.": "Codex notify configuration was auto-updated. Restart the current codex process to apply changes.",
+  "Failed to auto-configure Codex notify. See Agent Task Notifier logs for details.": "Failed to auto-configure Codex notify. See Agent Task Notifier logs for details.",
+  "Codex notify configuration repaired. Restart the current codex process.": "Codex notify configuration repaired. Restart the current codex process.",
+  "Codex notify configuration is already up to date.": "Codex notify configuration is already up to date.",
+  "Failed to repair Codex notify configuration. See logs for details.": "Failed to repair Codex notify configuration. See logs for details.",
+  "Claude hooks configuration was auto-updated. Restart the current claude process to apply changes.": "Claude hooks configuration was auto-updated. Restart the current claude process to apply changes.",
+  "Failed to auto-configure Claude hooks. See Agent Task Notifier logs for details.": "Failed to auto-configure Claude hooks. See Agent Task Notifier logs for details.",
+  "Claude hooks configuration repaired. Restart the current claude process.": "Claude hooks configuration repaired. Restart the current claude process.",
+  "Claude hooks configuration is already up to date.": "Claude hooks configuration is already up to date.",
+  "Failed to repair Claude hooks configuration. See logs for details.": "Failed to repair Claude hooks configuration. See logs for details."
+}
