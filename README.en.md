@@ -1,4 +1,4 @@
-![Agent Task Notifier icon](images/icon.png)
+<img src="images/icon.png" alt="Agent Task Notifier icon" width="160" />
 
 # Agent Task Notifier
 
