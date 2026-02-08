@@ -16,6 +16,9 @@ jobs:
   release:
     name: Build, Release, and Publish
     runs-on: ubuntu-latest
+    env:
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,11 +78,11 @@ jobs:
             artifacts/SHA256SUMS.txt
 
       - name: Publish to VS Code Marketplace
-        if: ${{ secrets.VSCE_PAT != '' }}
+        if: ${{ env.VSCE_PAT != '' }}
         run: |
-          npx --yes @vscode/vsce publish --packagePath "${{ steps.vars.outputs.vsix_file }}" --pat "${{ secrets.VSCE_PAT }}" --skip-duplicate
+          npx --yes @vscode/vsce publish --packagePath "${{ steps.vars.outputs.vsix_file }}" --pat "${VSCE_PAT}" --skip-duplicate
 
       - name: Publish to Open VSX
-        if: ${{ secrets.OVSX_PAT != '' }}
+        if: ${{ env.OVSX_PAT != '' }}
         run: |
-          npx --yes ovsx publish --packagePath "${{ steps.vars.outputs.vsix_file }}" -p "${{ secrets.OVSX_PAT }}" --skip-duplicate
+          npx --yes ovsx publish --packagePath "${{ steps.vars.outputs.vsix_file }}" -p "${OVSX_PAT}" --skip-duplicate

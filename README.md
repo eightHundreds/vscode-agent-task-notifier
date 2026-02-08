@@ -1,4 +1,6 @@
-<img src="images/icon.png" alt="Agent Task Notifier icon" width="160" />
+<p align="center">
+  <img src="images/icon.png" alt="Agent Task Notifier icon" width="160" />
+</p>
 
 # Agent Task Notifier
 
