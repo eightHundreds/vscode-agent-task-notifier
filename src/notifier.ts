@@ -153,6 +153,12 @@ function titleForEvent(event: AgentEvent): string {
     if (event.source === 'claude' && event.event === 'stop') {
         return vscode.l10n.t('Claude Turn Complete');
     }
+    if (event.source === 'opencode' && event.event === 'turn_complete') {
+        return vscode.l10n.t('OpenCode Turn Complete');
+    }
+    if (event.source === 'opencode' && event.event === 'approval_requested') {
+        return vscode.l10n.t('OpenCode Approval Requested');
+    }
     return vscode.l10n.t('Agent Event');
 }
 

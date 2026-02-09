@@ -4,7 +4,7 @@
     "description": "%extension.description%",
     "icon": "images/icon.png",
     "publisher": "wenbopan",
-    "version": "0.1.4",
+    "version": "0.0.1",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -30,6 +30,7 @@
         "agent",
         "codex",
         "claude",
+        "opencode",
         "notification",
         "cursor"
     ],
@@ -104,6 +105,10 @@
             {
                 "command": "agentTaskNotifier.repairClaudeHooks",
                 "title": "%command.repairClaudeHooks.title%"
+            },
+            {
+                "command": "agentTaskNotifier.repairOpenCodePlugin",
+                "title": "%command.repairOpenCodePlugin.title%"
             }
         ]
     },

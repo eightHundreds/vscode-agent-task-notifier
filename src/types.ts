@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-export type AgentEventSource = 'codex' | 'claude';
+export type AgentEventSource = 'codex' | 'claude' | 'opencode';
 export type AgentEventType = 'turn_complete' | 'approval_requested' | 'stop' | 'subagent_stop';
 export type AgentEventStatus = 'success' | 'info' | 'warning';
 

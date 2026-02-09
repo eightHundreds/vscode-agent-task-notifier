@@ -1,6 +1,6 @@
 {
     "extension.displayName": "Agent 任务通知器",
-    "extension.description": "面向 VS Code/Cursor 的 Agent 终端通知扩展。检测 Codex 与 Claude 任务完成事件，并支持点击通知跳回对应终端标签页。",
+    "extension.description": "面向 VS Code/Cursor 的 Agent 终端通知扩展。检测 Codex、Claude 与 OpenCode 任务事件，并支持点击通知跳回对应终端标签页。",
     "config.title": "Agent 任务通知器",
     "config.enabled.description": "启用或禁用 Agent 任务通知。",
     "config.osNotification.description": "发送系统原生通知。",
@@ -14,5 +14,6 @@
     "command.showLogs.title": "Agent 任务通知器：显示日志",
     "command.debugStatus.title": "Agent 任务通知器：调试状态",
     "command.repairCodexNotify.title": "Agent 任务通知器：修复 Codex Notify",
-    "command.repairClaudeHooks.title": "Agent 任务通知器：修复 Claude Hooks"
+    "command.repairClaudeHooks.title": "Agent 任务通知器：修复 Claude Hooks",
+    "command.repairOpenCodePlugin.title": "Agent 任务通知器：修复 OpenCode 插件"
 }

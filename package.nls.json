@@ -1,6 +1,6 @@
 {
     "extension.displayName": "Agent Task Notifier",
-    "extension.description": "Agent-first terminal notifier for VS Code/Cursor. Detects Codex and Claude task completion events and lets notification clicks jump back to the exact terminal tab.",
+    "extension.description": "Agent-first terminal notifier for VS Code/Cursor. Detects Codex, Claude, and OpenCode task events and lets notification clicks jump back to the exact terminal tab.",
     "config.title": "Agent Task Notifier",
     "config.enabled.description": "Enable or disable agent task notifications.",
     "config.osNotification.description": "Send native OS notifications.",
@@ -14,5 +14,6 @@
     "command.showLogs.title": "Agent Task Notifier: Show Logs",
     "command.debugStatus.title": "Agent Task Notifier: Debug Status",
     "command.repairCodexNotify.title": "Agent Task Notifier: Repair Codex Notify",
-    "command.repairClaudeHooks.title": "Agent Task Notifier: Repair Claude Hooks"
+    "command.repairClaudeHooks.title": "Agent Task Notifier: Repair Claude Hooks",
+    "command.repairOpenCodePlugin.title": "Agent Task Notifier: Repair OpenCode Plugin"
 }

@@ -9,6 +9,8 @@
   "Codex Approval Requested": "Codex Approval Requested",
   "Claude Subagent Complete": "Claude Subagent Complete",
   "Claude Turn Complete": "Claude Turn Complete",
+  "OpenCode Turn Complete": "OpenCode Turn Complete",
+  "OpenCode Approval Requested": "OpenCode Approval Requested",
   "Agent Event": "Agent Event",
   "Codex notify configuration was auto-updated. Restart the current codex process to apply changes.": "Codex notify configuration was auto-updated. Restart the current codex process to apply changes.",
   "Failed to auto-configure Codex notify. See Agent Task Notifier logs for details.": "Failed to auto-configure Codex notify. See Agent Task Notifier logs for details.",
@@ -19,5 +21,10 @@
   "Failed to auto-configure Claude hooks. See Agent Task Notifier logs for details.": "Failed to auto-configure Claude hooks. See Agent Task Notifier logs for details.",
   "Claude hooks configuration repaired. Restart the current claude process.": "Claude hooks configuration repaired. Restart the current claude process.",
   "Claude hooks configuration is already up to date.": "Claude hooks configuration is already up to date.",
-  "Failed to repair Claude hooks configuration. See logs for details.": "Failed to repair Claude hooks configuration. See logs for details."
+  "Failed to repair Claude hooks configuration. See logs for details.": "Failed to repair Claude hooks configuration. See logs for details.",
+  "OpenCode plugin was auto-updated. Restart the current opencode process to apply changes.": "OpenCode plugin was auto-updated. Restart the current opencode process to apply changes.",
+  "Failed to auto-configure OpenCode plugin. See Agent Task Notifier logs for details.": "Failed to auto-configure OpenCode plugin. See Agent Task Notifier logs for details.",
+  "OpenCode plugin repaired. Restart the current opencode process.": "OpenCode plugin repaired. Restart the current opencode process.",
+  "OpenCode plugin is already up to date.": "OpenCode plugin is already up to date.",
+  "Failed to repair OpenCode plugin. See logs for details.": "Failed to repair OpenCode plugin. See logs for details."
 }

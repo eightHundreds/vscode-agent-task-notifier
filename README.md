@@ -10,7 +10,7 @@
 
 核心目标：
 
-- 你继续在终端里正常运行 `codex` / `claude`。
+- 你继续在终端里正常运行 `codex` / `claude` / `opencode`。
 - Agent 一次任务（turn / stop）结束时自动通知。
 - 点击通知后，回到发起该任务的终端标签页。
 
@@ -18,7 +18,7 @@
 
 ## 主要功能
 
-- Codex + Claude 优先的事件流设计。
+- Codex + Claude + OpenCode 优先的事件流设计。
 - 结构化事件协议：`OSC 777;notify;AGENT_TASK_EVENT_V1;<base64url-json>`。
 - 同时支持系统通知与 VS Code toast，并提供回到终端动作。
 - 使用 deep-link 回跳到原 VS Code 窗口与对应终端标签页。
@@ -35,6 +35,9 @@
 5. 在内置终端启动一次 `claude`。
 6. 扩展会自动同步 Claude hooks 脚本到 `~/.claude/agent-task-notifier/`，并检查/改写 `~/.claude/settings.json` 的 `hooks.Stop` 与 `hooks.SubagentStop`。
 7. 按提示重启当前 `claude` 进程后生效。
+8. 在内置终端启动一次 `opencode`。
+9. 扩展会自动同步 OpenCode 插件脚本到 `~/.opencode/plugins/`。
+10. 按提示重启当前 `opencode` 进程后生效。
 
 ## Agent 配置
 
@@ -88,6 +91,21 @@
 }
 ```
 
+### OpenCode
+
+默认不需要手动修改配置。扩展会在检测到你启动 `opencode` 时自动同步插件脚本到 `~/.opencode/plugins/`：
+
+- `agent-task-notifier.js`
+- `agent-task-notifier-emit.sh`
+
+如需手动触发修复，可执行命令：
+
+`Agent Task Notifier: Repair OpenCode Plugin`
+
+说明：OpenCode 通过 plugin hooks 输出事件，当前适配器映射关系为：
+- `session.status`（`status.type=idle`）/ `session.idle` -> `turn_complete`
+- `permission.updated` / `permission.asked` -> `approval_requested`
+
 ## 配置项
 
 所有配置位于 `agentTaskNotifier.*`：
@@ -108,6 +126,7 @@
 - `Agent Task Notifier: Debug Status`
 - `Agent Task Notifier: Repair Codex Notify`
 - `Agent Task Notifier: Repair Claude Hooks`
+- `Agent Task Notifier: Repair OpenCode Plugin`
 
 ## 调试与排查
 
@@ -121,11 +140,13 @@
    - `Codex notify config rewritten ...`：已自动改写 `~/.codex/config.toml`。
    - `Claude command detected ...`：检测到你在终端启动了 claude。
    - `Claude hooks config rewritten ...`：已自动改写 `~/.claude/settings.json`。
+   - `OpenCode command detected ...`：检测到你在终端启动了 opencode。
+   - `OpenCode plugin scripts synced ...`：已自动同步 `~/.opencode/plugins/` 下插件脚本。
    - `Structured event parsed ...`：说明扩展已收到结构化事件。
    - `Structured payload detail ...`：可直接看到本次通知使用的 `title/message`（会截断显示）。
    - `Suppressed duplicate event ...`：说明事件被去重抑制。
    - `Notification delivered ...`：说明通知已发出。
-5. 如果没有 `Started shell execution stream ...`，请在扩展激活后重新启动一次对应的 `codex` / `claude` 进程（只会监听启动后的 shell 执行流）。
+5. 如果没有 `Started shell execution stream ...`，请在扩展激活后重新启动一次对应的 `codex` / `claude` / `opencode` 进程（只会监听启动后的 shell 执行流）。
 
 ### 2) 判断 Codex 是否真的发出了事件
 
@@ -166,7 +187,7 @@ npm run watch
 
 - 适配脚本依赖 `jq` 处理 JSON。
 - 当前版本仅支持“适配脚本/hook 输出结构化事件”这一路径。
-- Codex/Claude 配置改写逻辑只会在检测到对应命令启动时触发。
+- Codex/Claude 配置改写逻辑与 OpenCode 插件同步逻辑只会在检测到对应命令启动时触发。
 
 ## 致谢
 

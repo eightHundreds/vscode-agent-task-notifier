@@ -10,7 +10,7 @@ An Agent notification extension for the integrated terminal in VS Code / Cursor.
 
 Core goals:
 
-- Keep using `codex` / `claude` in the terminal as usual.
+- Keep using `codex` / `claude` / `opencode` in the terminal as usual.
 - Automatically notify when one Agent task (turn / stop) completes.
 - Click the notification to jump back to the terminal tab where the task started.
 
@@ -18,7 +18,7 @@ This extension is intentionally not a generic OSC notification plugin. It focuse
 
 ## Key Features
 
-- Event flow design optimized for Codex + Claude.
+- Event flow design optimized for Codex + Claude + OpenCode.
 - Structured event protocol: `OSC 777;notify;AGENT_TASK_EVENT_V1;<base64url-json>`.
 - Supports both system notifications and VS Code toasts, with an action to jump back to the terminal.
 - Uses deep links to return to the original VS Code window and the corresponding terminal tab.
@@ -35,6 +35,9 @@ This extension is intentionally not a generic OSC notification plugin. It focuse
 5. Start `claude` once in the integrated terminal.
 6. The extension automatically syncs Claude hook scripts to `~/.claude/agent-task-notifier/` and checks/rewrites `hooks.Stop` and `hooks.SubagentStop` in `~/.claude/settings.json`.
 7. Restart the current `claude` process when prompted.
+8. Start `opencode` once in the integrated terminal.
+9. The extension automatically syncs OpenCode plugin scripts to `~/.opencode/plugins/`.
+10. Restart the current `opencode` process when prompted.
 
 ## Agent Configuration
 
@@ -88,6 +91,21 @@ If you prefer manual configuration, use a structure like this:
 }
 ```
 
+### OpenCode
+
+No manual configuration is required by default. When the extension detects that you started `opencode`, it automatically syncs plugin scripts to `~/.opencode/plugins/`:
+
+- `agent-task-notifier.js`
+- `agent-task-notifier-emit.sh`
+
+To manually trigger a repair, run:
+
+`Agent Task Notifier: Repair OpenCode Plugin`
+
+Note: OpenCode integration uses plugin hooks. Current event mapping:
+- `session.status` (`status.type=idle`) / `session.idle` -> `turn_complete`
+- `permission.updated` / `permission.asked` -> `approval_requested`
+
 ## Settings
 
 All settings are under `agentTaskNotifier.*`:
@@ -108,6 +126,7 @@ All settings are under `agentTaskNotifier.*`:
 - `Agent Task Notifier: Debug Status`
 - `Agent Task Notifier: Repair Codex Notify`
 - `Agent Task Notifier: Repair Claude Hooks`
+- `Agent Task Notifier: Repair OpenCode Plugin`
 
 ## Debugging & Troubleshooting
 
@@ -121,11 +140,13 @@ All settings are under `agentTaskNotifier.*`:
    - `Codex notify config rewritten ...`: `~/.codex/config.toml` was auto-rewritten.
    - `Claude command detected ...`: Detected that you started claude in terminal.
    - `Claude hooks config rewritten ...`: `~/.claude/settings.json` was auto-rewritten.
+   - `OpenCode command detected ...`: Detected that you started opencode in terminal.
+   - `OpenCode plugin scripts synced ...`: Plugin scripts were synced to `~/.opencode/plugins/`.
    - `Structured event parsed ...`: Extension received a structured event.
    - `Structured payload detail ...`: Shows the `title/message` used by this notification (displayed with truncation).
    - `Suppressed duplicate event ...`: Event was suppressed by de-duplication.
    - `Notification delivered ...`: Notification was sent.
-5. If you do not see `Started shell execution stream ...`, restart the corresponding `codex` / `claude` process after extension activation (only execution streams started after activation are observed).
+5. If you do not see `Started shell execution stream ...`, restart the corresponding `codex` / `claude` / `opencode` process after extension activation (only execution streams started after activation are observed).
 
 ### 2) Verify whether Codex actually emitted events
 
@@ -166,7 +187,7 @@ Then press `F5` in VS Code to launch Extension Development Host.
 
 - Adapter scripts rely on `jq` for JSON processing.
 - Current versions support only the path where adapter scripts/hooks emit structured events.
-- Codex/Claude config rewrite logic is triggered only when startup of the corresponding command is detected.
+- Codex/Claude config rewrite logic and OpenCode plugin sync are triggered only when startup of the corresponding command is detected.
 
 ## Acknowledgements
 

@@ -11,7 +11,7 @@ ESC ] 777 ; notify ; AGENT_TASK_EVENT_V1 ; <base64url(json)> BEL
 ```json
 {
   "version": 1,
-  "source": "codex | claude",
+  "source": "codex | claude | opencode",
   "event": "turn_complete | approval_requested | stop | subagent_stop",
   "status": "success | info | warning",
   "title": "optional, string",

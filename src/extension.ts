@@ -14,6 +14,7 @@ import { TerminalRegistry } from './terminalRegistry';
 import { AgentEvent, AgentEventPayloadV1 } from './types';
 import { CodexNotifyBootstrap, isCodexCommand } from './codexNotifyBootstrap';
 import { ClaudeHooksBootstrap, isClaudeCommand } from './claudeHooksBootstrap';
+import { OpenCodePluginBootstrap, isOpenCodeCommand } from './opencodePluginBootstrap';
 
 export function activate(context: vscode.ExtensionContext): void {
     const logger = new Logger();
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext): void {
     const notificationService = new NotificationService(context, focusRouter, logger);
     const codexNotifyBootstrap = new CodexNotifyBootstrap(context, logger);
     const claudeHooksBootstrap = new ClaudeHooksBootstrap(context, logger);
+    const openCodePluginBootstrap = new OpenCodePluginBootstrap(context, logger);
     const dedupe = new EventDedupe(() => getDedupeWindowMs(), logger);
     logger.info(`Extension activated (logLevel=${getLogLevel()})`);
     logger.debug('Debug logging is enabled');
@@ -50,6 +52,8 @@ export function activate(context: vscode.ExtensionContext): void {
             logger.info(`Codex bootstrap paths: config="${paths.configPath}" externalScript="${paths.externalScriptPath}"`);
             const claudePaths = claudeHooksBootstrap.getPaths();
             logger.info(`Claude bootstrap paths: config="${claudePaths.configPath}" stopScript="${claudePaths.externalStopScriptPath}" subagentStopScript="${claudePaths.externalSubagentStopScriptPath}"`);
+            const openCodePaths = openCodePluginBootstrap.getPaths();
+            logger.info(`OpenCode bootstrap paths: plugin="${openCodePaths.pluginPath}" emitScript="${openCodePaths.emitScriptPath}"`);
             for (let i = 0; i < terminals.length; i += 1) {
                 const terminal = terminals[i];
                 const shellIntegration = terminal.shellIntegration ? 'ready' : 'missing';
@@ -64,6 +68,10 @@ export function activate(context: vscode.ExtensionContext): void {
         vscode.commands.registerCommand('agentTaskNotifier.repairClaudeHooks', async () => {
             logger.info('Manual Claude hooks repair triggered');
             await claudeHooksBootstrap.repairNow();
+        }),
+        vscode.commands.registerCommand('agentTaskNotifier.repairOpenCodePlugin', async () => {
+            logger.info('Manual OpenCode plugin repair triggered');
+            await openCodePluginBootstrap.repairNow();
         }),
         vscode.commands.registerCommand('agentTaskNotifier.testNotification', async () => {
             const terminal = vscode.window.activeTerminal;
@@ -113,6 +121,10 @@ export function activate(context: vscode.ExtensionContext): void {
             if (isClaudeCommand(commandLine)) {
                 logger.info(`Claude command detected in terminal ${terminalId}`);
                 void claudeHooksBootstrap.handleClaudeCommandDetected();
+            }
+            if (isOpenCodeCommand(commandLine)) {
+                logger.info(`OpenCode command detected in terminal ${terminalId}`);
+                void openCodePluginBootstrap.handleOpenCodeCommandDetected();
             }
             const parser = new AgentOutputParser({
                 onStructured: (payload) => {

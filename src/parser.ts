@@ -160,7 +160,7 @@ function maybeString(value: unknown): string | undefined {
 }
 
 function isSource(value: unknown): value is AgentEventSource {
-    return value === 'codex' || value === 'claude';
+    return value === 'codex' || value === 'claude' || value === 'opencode';
 }
 
 function isEventType(value: unknown): value is AgentEventType {
