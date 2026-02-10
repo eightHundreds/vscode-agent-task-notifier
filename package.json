@@ -35,6 +35,9 @@
         "cursor"
     ],
     "contributes": {
+        "configurationDefaults": {
+            "notifications.defaultPosition": "bottom-right"
+        },
         "configuration": {
             "title": "%config.title%",
             "properties": {
